@@ -34,4 +34,11 @@ describe('cat routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('gets an author by id', async () => {
+    const expected = await Author.findAuthorById(1);
+    const res = await request(app).get(`/api/v1/authors/${expected.id}`);
+
+    expect(res.body).toEqual({ ...expected });
+  });
 });
