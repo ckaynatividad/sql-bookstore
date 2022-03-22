@@ -8,7 +8,7 @@ CREATE TABLE publishers (
     city TEXT,
     state TEXT,
     country TEXT
-)
+);
 
 CREATE TABLE authors (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -27,8 +27,8 @@ CREATE TABLE books (
 CREATE TABLE reviewers (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    company TEST NOT NULL
-)
+    company TEXT NOT NULL
+);
 
 CREATE TABLE reviews (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -36,4 +36,7 @@ CREATE TABLE reviews (
     reviewer BIGINT REFERENCES reviewers(id),
     review VARCHAR(140) NOT NULL,
     book BIGINT REFERENCES books(id)
-)
+);
+
+INSERT INTO publishers (name, city, state, country)
+VALUES ('Penguin Publishers', 'New York City', 'New York', 'USA');
