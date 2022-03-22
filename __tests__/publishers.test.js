@@ -48,19 +48,4 @@ describe('sql-bookstore routes', () => {
     const res = await request(app).get(`/api/v1/publishers/${publisher.id}`);
     expect(res.body).toEqual(publisher);
   });
-
-  it('should be able to update the publisher', async () => {
-    const expected = {
-      id: expect.any(String),
-      name: 'Penguin Publishers',
-      city: 'New York',
-      state: 'New York',
-      country: 'USA',
-    };
-
-    const res = await request(app)
-      .patch('/api/v1/publishers/1')
-      .send({ city: 'New York' });
-    expect(res.body).toEqual(expected);
-  });
 });
