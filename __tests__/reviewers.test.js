@@ -39,4 +39,15 @@ describe('quotable routes', () => {
       },
     ]);
   });
+
+  it('should be able to list reviews by id', async () => {
+    const reviewers = {
+      id: '1',
+      name: 'Amazon Customer',
+      company: 'Amazon',
+    };
+    const res = await request(app).get(`/api/v1/reviewers/${reviewers.id}`);
+
+    expect(res.body).toEqual(reviewers);
+  });
 });
