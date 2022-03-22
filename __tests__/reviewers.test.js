@@ -50,4 +50,20 @@ describe('quotable routes', () => {
 
     expect(res.body).toEqual(reviewers);
   });
+
+  it('should be able to update a review', async () => {
+    const reviewers = { id: '1', name: 'Amazon Customer', company: 'Amazon' };
+    const res = await request(app)
+      .patch(`/api/v1/reviewers/${reviewers.id}`)
+      .send({ name: 'Amazon Customer 2' });
+
+    const expected = {
+      id: '1',
+      name: 'Amazon Customer 2',
+      company: 'Amazon',
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Reviewer.getById(reviewers.id)).toEqual(expected);
+  });
 });
