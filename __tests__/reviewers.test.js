@@ -66,4 +66,16 @@ describe('quotable routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Reviewer.getById(reviewers.id)).toEqual(expected);
   });
+
+  it('should be able to delete a review', async () => {
+    const reviewers = await Reviewer.insert({
+      id: expect.any(String),
+      name: 'chase',
+      company: 'thiscompany',
+    });
+    const res = await request(app).delete(`/api/v1/reviewers/${reviewers.id}`);
+
+    expect(res.body).toEqual(reviewers);
+    expect(await Reviewer.getById(reviewers.id)).toBeNull();
+  });
 });
