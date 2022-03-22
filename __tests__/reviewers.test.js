@@ -45,11 +45,33 @@ describe('quotable routes', () => {
       id: '1',
       name: 'Amazon Customer',
       company: 'Amazon',
+      reviews: [
+        {
+          books_id: '1',
+          books_title: 'Heartsongs: Readings for Weddings',
+          id: '1',
+          rating: 5,
+          review: 'Its impossible to read this book and not be moved. ',
+        },
+      ],
     };
     const res = await request(app).get(`/api/v1/reviewers/${reviewers.id}`);
 
     expect(res.body).toEqual(reviewers);
   });
+
+  // {
+  //     id,
+  //     name,
+  //     company,
+  //     reviews: [{
+  //         id,
+  //         rating,
+  //         review,
+  //         book_id,
+  //         book_title
+  //     }]
+  // }
 
   it('should be able to update a review', async () => {
     const reviewers = { id: '1', name: 'Amazon Customer', company: 'Amazon' };
@@ -70,8 +92,8 @@ describe('quotable routes', () => {
   it('should be able to delete a review', async () => {
     const reviewers = await Reviewer.insert({
       id: expect.any(String),
-      name: 'chase',
-      company: 'thiscompany',
+      name: 'Amazon Customer',
+      company: 'Amazon',
     });
     const res = await request(app).delete(`/api/v1/reviewers/${reviewers.id}`);
 
