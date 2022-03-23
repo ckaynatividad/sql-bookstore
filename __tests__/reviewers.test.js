@@ -13,14 +13,20 @@ describe('quotable routes', () => {
     pool.end();
   });
 
-  it('should be able create a review', async () => {
+  it('should be able to create a reviewer', async () => {
     const res = await request(app)
       .post('/api/v1/reviewers')
       .send({ name: 'chase', company: 'thiscompany' });
+
+    expect(res.body).toEqual({
+      id: '2',
+      name: 'chase',
+      company: 'thiscompany',
+    });
   });
 
   it('should be able to list all reviewers', async () => {
-    const expected = await Reviewer.insert({
+    await Reviewer.insert({
       name: 'chase',
       company: 'thiscompany',
     });
