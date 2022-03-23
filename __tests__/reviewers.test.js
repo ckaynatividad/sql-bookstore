@@ -60,19 +60,6 @@ describe('quotable routes', () => {
     expect(res.body).toEqual(reviewers);
   });
 
-  // {
-  //     id,
-  //     name,
-  //     company,
-  //     reviews: [{
-  //         id,
-  //         rating,
-  //         review,
-  //         book_id,
-  //         book_title
-  //     }]
-  // }
-
   it('should be able to update a review', async () => {
     const reviewers = { id: '1', name: 'Amazon Customer', company: 'Amazon' };
     const res = await request(app)
