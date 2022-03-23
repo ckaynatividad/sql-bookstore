@@ -36,4 +36,16 @@ describe('sql - books routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('gets book by id', async () => {
+    const expected = {
+      title: 'Heartsongs: Readings for Weddings',
+      id: '1',
+      publisher: '1',
+      released: 2004,
+    };
+    const res = await request(app).get(`/api/v1/books/${expected.id}`);
+
+    expect(res.body).toEqual({ ...expected });
+  });
 });
