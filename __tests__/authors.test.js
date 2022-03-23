@@ -41,6 +41,13 @@ describe('cat routes', () => {
       name: 'Pinky Agnew',
       dob: '1955-01-01T08:00:00.000Z',
       pob: 'New Zealand',
+      books: [
+        {
+          id: '1',
+          title: 'Heartsongs: Readings for Weddings',
+          released: 2004,
+        },
+      ],
     };
     const res = await request(app).get(`/api/v1/authors/${expected.id}`);
 
