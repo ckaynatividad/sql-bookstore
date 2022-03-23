@@ -20,7 +20,7 @@ describe('cat routes', () => {
   it('creates an author', async () => {
     const expected = {
       name: 'Shel Silverstein',
-      dob: '9/25/1930',
+      dob: '1930-09-25T08:00:00.000Z',
       pob: 'Chicago, IL',
     };
     const res = await request(app).post('/api/v1/authors').send(expected);
@@ -39,7 +39,7 @@ describe('cat routes', () => {
     const expected = {
       id: '1',
       name: 'Pinky Agnew',
-      dob: '1/1/1955',
+      dob: '1955-01-01T08:00:00.000Z',
       pob: 'New Zealand',
     };
     const res = await request(app).get(`/api/v1/authors/${expected.id}`);
