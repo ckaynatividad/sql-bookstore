@@ -47,7 +47,7 @@ INSERT INTO publishers (name, city, state, country)
 VALUES ('Penguin Publishers', 'New York City', 'New York', 'USA');
 
 INSERT INTO authors (name, dob, pob)
-VALUES ('Pinky Agnew', '1/1/1955', 'New Zealand');
+VALUES ('Pinky Agnew', '1/1/1234', 'New Zealand');
 
 INSERT INTO books (title, publisher, released)
 VALUES ('Heartsongs: Readings for Weddings', '1', '2004');
