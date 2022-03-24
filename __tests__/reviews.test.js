@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const app = require('../lib/app');
 const request = require('supertest');
 const setup = require('../data/setup');
+const Review = require('../lib/models/Review');
 
 describe('quotable routes', () => {
   beforeEach(() => {
@@ -27,5 +28,19 @@ describe('quotable routes', () => {
       review: 'Its impossible to read this book and not be moved. ',
       book: '1',
     });
+  });
+
+  it('should be able to delete a review', async () => {
+    const review = await Review.insert({
+      id: expect.any(String),
+      rating: 1,
+      reviewer: '1',
+      review: 'This book was awesome, and I am not Pinkys mom.',
+      book: '1',
+    });
+    const res = await request(app).delete(`/api/v1/reviews/${review.id}`);
+
+    expect(res.body).toEqual(review);
+    expect(await Review.getById(review.id)).toBeNull();
   });
 });
