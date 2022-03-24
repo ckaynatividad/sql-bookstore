@@ -30,6 +30,15 @@ describe('quotable routes', () => {
     });
   });
 
+  it('should be able to get the top 100 reviews', async () => {
+    const expected = await Review.findAllReviews();
+    const res = await request(app).get('/api/v1/reviews');
+
+    expect(res.body).toEqual(expected);
+  });
+
+  //test for getById
+
   it('should be able to delete a review', async () => {
     const review = await Review.insert({
       id: expect.any(String),
