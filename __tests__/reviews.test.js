@@ -59,6 +59,17 @@ describe('quotable routes', () => {
   });
 
   //test for getById
+  it('gets review by Id', async () => {
+    const expected = {
+      id: '1',
+      rating: 5,
+      review: 'Its impossible to read this book and not be moved. ',
+      book: '1',
+      reviewer: '1',
+    };
+    const res = await request(app).get(`/api/v1/reviews/${expected.id}`);
+    expect(res.body).toEqual(expected);
+  });
 
   it('should be able to delete a review', async () => {
     const review = await Review.insert({
