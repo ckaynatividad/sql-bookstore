@@ -39,10 +39,33 @@ describe('sql - books routes', () => {
 
   it('gets book by id', async () => {
     const expected = {
-      title: 'Heartsongs: Readings for Weddings',
       id: '1',
+      title: 'Heartsongs: Readings for Weddings',
       publisher: '1',
       released: 2004,
+      publishers: [
+        {
+          id: '1',
+          name: 'Penguin Publishers',
+        },
+      ],
+      authors: [
+        {
+          id: '1',
+          name: 'Pinky Agnew',
+        },
+      ],
+      reviews: [
+        {
+          review_id: '1',
+          rating: 5,
+          review: 'Its impossible to read this book and not be moved. ',
+          reviewer: {
+            reviewer_id: '1',
+            name: 'Amazon Customer',
+          },
+        },
+      ],
     };
     const res = await request(app).get(`/api/v1/books/${expected.id}`);
 

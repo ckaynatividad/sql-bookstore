@@ -20,7 +20,7 @@ describe('cat routes', () => {
   it('creates an author', async () => {
     const expected = {
       name: 'Shel Silverstein',
-      dob: '1930-09-25T05:00:00.000Z',
+      dob: '1/1/1234',
       pob: 'Chicago, IL',
     };
     const res = await request(app).post('/api/v1/authors').send(expected);
@@ -29,8 +29,14 @@ describe('cat routes', () => {
   });
 
   it('gets a list of authors', async () => {
-    const expected = await Author.findAllAuthors();
+    const expected = [
+      {
+        name: 'Pinky Agnew',
+        id: '1',
+      },
+    ];
     const res = await request(app).get('/api/v1/authors');
+    console.log('res.body', res.body);
 
     expect(res.body).toEqual(expected);
   });
@@ -39,7 +45,7 @@ describe('cat routes', () => {
     const expected = {
       id: '1',
       name: 'Pinky Agnew',
-      dob: '1955-01-01T06:00:00.000Z',
+      dob: '1/1/1234',
       pob: 'New Zealand',
       books: [
         {
