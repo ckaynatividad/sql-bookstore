@@ -31,10 +31,31 @@ describe('quotable routes', () => {
   });
 
   it('should be able to get the top 100 reviews', async () => {
-    const expected = await Review.findAllReviews();
+    for (let i = 0; i < 200; i++) {
+      await Review.insert({
+        rating: '4',
+        reviewer: '1',
+        review: 'Dumb Data',
+        book: '1',
+      });
+    }
     const res = await request(app).get('/api/v1/reviews');
 
-    expect(res.body).toEqual(expected);
+    expect(res.body.length).toEqual(100);
+    expect(res.body[0]).toEqual({
+      id: '1',
+      rating: 5,
+      review: 'Its impossible to read this book and not be moved. ',
+      book: '1',
+      title: 'Heartsongs: Readings for Weddings',
+    });
+    expect(res.body[1]).toEqual({
+      id: expect.any(String),
+      rating: 4,
+      review: 'Dumb Data',
+      book: '1',
+      title: 'Heartsongs: Readings for Weddings',
+    });
   });
 
   //test for getById
