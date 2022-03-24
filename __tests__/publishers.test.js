@@ -38,13 +38,19 @@ describe('sql-bookstore routes', () => {
   });
 
   it('should be able to get the publishers id', async () => {
-    const publisher = await createPublisher({
-      id: expect.any(String),
-      name: 'Random House',
+    const publisher = {
+      id: '1',
+      name: 'Penguin Publishers',
       city: 'New York City',
       state: 'New York',
       country: 'USA',
-    });
+      books: [
+        {
+          id: '1',
+          title: 'Heartsongs: Readings for Weddings',
+        },
+      ],
+    };
     const res = await request(app).get(`/api/v1/publishers/${publisher.id}`);
     expect(res.body).toEqual(publisher);
   });
